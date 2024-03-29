@@ -1,9 +1,11 @@
 class EmployeesController < ApplicationController
+  before_action :authenticate_employee!, only: [:update, :edit, :show, :dashboard]
   before_action :set_employee, only: %i[ show edit update destroy ]
 
   # GET /employees or /employees.json
-  def index
-    @employees = Employee.all
+  def dashboard
+    @employee = current_user.id
+    @employee = Employee.find_by!(current_user.id)
   end
 
   # GET /employees/1 or /employees/1.json

@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   devise_for :employees
 
-  root "employees#index"
+  root "employees#dashboard"
   
   resources :messages
   resources :companies
