@@ -4,8 +4,7 @@ class EmployeesController < ApplicationController
 
   # GET /employees or /employees.json
   def dashboard
-    @employee = current_user.id
-    @employee = Employee.find_by!(current_user.id)
+    @employee = current_employee
   end
 
   # GET /employees/1 or /employees/1.json
