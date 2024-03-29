@@ -13,3 +13,7 @@
  *= require_tree .
  *= require_self
  */
+
+ /* Link to Bootstrap template */
+/* Example: */
+/* *= require https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css */
