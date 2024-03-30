@@ -1,14 +1,19 @@
 class EmployeesController < ApplicationController
   before_action :authenticate_employee!, only: [:update, :edit, :show, :dashboard]
-  before_action :set_employee, only: %i[ show edit update destroy ]
+  before_action :set_employee, only: %i[ dashboard edit update destroy show ]
 
   # GET /employees or /employees.json
   def dashboard
-    @employee = current_employee
   end
-
   # GET /employees/1 or /employees/1.json
   def show
+    # Assuming current_employee could be nil, which is unusual with Devise's authenticate_employee!
+    if current_employee.nil?
+      render json: { error: "Employee not found. Please log in.", redirect_url: root_url }, status: :unauthorized
+    else
+      @employee = current_employee
+      render json: @employee
+    end
   end
 
   # GET /employees/new
