@@ -8,6 +8,7 @@ class TimesheetEntriesController < ApplicationController
 
   # GET /timesheet_entries/1 or /timesheet_entries/1.json
   def show
+    
   end
 
   # GET /timesheet_entries/new

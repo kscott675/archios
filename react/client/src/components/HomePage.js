@@ -12,11 +12,11 @@ function HomePage() {
   useEffect(() => {
     async function fetchHomepageData() {
       try {
-        const response = await axios.get('https://refactored-palm-tree-vjg6j667qjq3pgxr-3000.app.github.dev');
+        const response = await axios.get('http://0.0.0.0:3000/api');
         setHomepageData(response.data); // Assuming the response data structure matches your state structure
       } catch (error) {
         console.error('Error fetching homepage data:', error);
-        setError('Failed to fetch homepage dataaaa.');
+        setError('Failed to fetch homepage data.');
       }
     }
     fetchHomepageData();
@@ -30,7 +30,7 @@ function HomePage() {
         <>
           <h1>{homepageData.message}</h1>
           <p>{homepageData.description}</p>
-          {!homepageData.authentication.signed_in && ( // Correctly access the signed_in property
+          {homepageData.authentication && !homepageData.authentication.signed_in && (
             <div>
               <button>Sign In</button>
               <button>Sign Up</button>

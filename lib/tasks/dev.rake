@@ -2,6 +2,7 @@ desc "Fill the database tables with some sample data"
 task sample_data: :environment do
   if Rails.env.development?
     TimesheetEntry.destroy_all
+    PayPeriod.destroy_all
     Message.destroy_all
     Employee.destroy_all
     Company.destroy_all
@@ -44,40 +45,33 @@ task sample_data: :environment do
 
     puts "#{Employee.count} employees have been created."
 
-    timesheet_entry_count = 5
-    timesheet_entries = []
+    current_pay_period = PayPeriod.create!(
+      start_date: Faker::Date.backward(days: 7),
+      end_date: Faker::Date.forward(days: 7),
+    )
 
-    timesheet_entry_count.times do
-      started_at = Faker::Time.backward(days: 7)
-      ended_at = started_at + rand(1..8).hours
-      comments = Faker::Lorem.sentence
+    20.times do
+      comments = [Faker::Lorem.sentence, ""].sample
+      started_at = Faker::Time.between(from: current_pay_period.start_date, to: current_pay_period.end_date)
 
-      # Check for uniqueness
-      while timesheet_entries.any? { |entry| entry[:started_at] == started_at }
-        started_at = Faker::Time.backward(days: 7)
-        ended_at = started_at + rand(1..8).hours
+      ended_at = [(started_at + rand(1..8).hours), nil].sample
+      previous_entry = alice.timesheet_entries.last
+
+      if previous_entry && previous_entry.ended_at.nil?
+        random_end_time = (previous_entry.started_at + rand(4..8).hours)
+        previous_entry.update!(ended_at: random_end_time)
+        previous_entry.calculate_hours_worked
+      else
+        TimesheetEntry.create!(
+          employee_id: alice.id,
+          started_at: started_at,
+          ended_at: ended_at,
+          comments: comments,
+          entry_approval_status: (ended_at.nil? ? "pending" : ["submitted", "approved", "rejected"].sample),
+          pay_period_id: current_pay_period.id,
+        )
       end
-
-      timesheet_entries << {
-        employee_id: alice.id,
-        started_at: started_at,
-        ended_at: ended_at,
-        comments: comments,
-        entry_approval_status: "approved",
-      }
     end
-
-    # Create timesheet entries
-    timesheet_entries.each do |entry|
-      TimesheetEntry.create!(entry)
-    end
-
-    puts TimesheetEntry.all.inspect
-
     puts "#{TimesheetEntry.count} timesheet entries have been created."
-
-    puts "Sample data has been successfully generated."
-  else
-    puts "This task can only be run in the development environment."
   end
 end
