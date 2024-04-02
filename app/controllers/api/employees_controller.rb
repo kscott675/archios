@@ -4,7 +4,6 @@ module Api
 
     # GET /employees or /employees.json
     def show
-      #only show if they are the manager of employee or if they are the employee
       dashboard_data = @employee.dashboard 
       render json: dashboard_data
     end

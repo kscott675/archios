@@ -3,6 +3,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby "3.2.1"
 gem 'rack-cors', require: 'rack/cors'
+gem 'webpacker'
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
 gem "rails", "~> 7.0.4", ">= 7.0.4.3"
@@ -115,5 +116,4 @@ gem "react", "~> 0.0.2"
 
 gem "shakapacker", "= 7.2"
 
-
-
+gem "active_model_serializers", "~> 0.10.14"

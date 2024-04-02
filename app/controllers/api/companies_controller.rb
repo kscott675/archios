@@ -3,7 +3,10 @@ module Api
     before_action :set_company, only: %i[ show edit update destroy ]
 
     # GET /companies or /companies.json
-
+def index
+  @companies = Company.all
+  render json: @companies
+end
     # GET /companies/1 or /companies/1.json
     def show
       company_data = {
@@ -26,14 +29,10 @@ module Api
     def create
       @company = Company.new(company_params)
 
-      respond_to do |format|
-        if @company.save
-          format.html { redirect_to company_url(@company), notice: "Company was successfully created." }
-          format.json { render :show, status: :created, location: @company }
-        else
-          format.html { render :new, status: :unprocessable_entity }
-          format.json { render json: @company.errors, status: :unprocessable_entity }
-        end
+      if @company.save
+        render json: @company, status: :created
+      else
+        render json: @company.errors, status: :unprocessable_entity
       end
     end
 

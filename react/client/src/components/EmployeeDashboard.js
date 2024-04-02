@@ -2,33 +2,35 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
 function EmployeeDashboard() {
-  const [dashboardData, setDashboardData] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [dashboardData, setDashboardData] = useState([]);
   const [error, setError] = useState(null);
 
   useEffect(() => {
     const fetchDashboardData = async () => {
       try {
-        const response = await axios.get('http://0.0.0.0:3000/api/employees/2'); // Adjust the URL to match your Rails route
+        setLoading(true);
+        setError(null);
+
+        const response = await axios.get('http://0.0.0.0:3000/api/employees/2');
         setDashboardData(response.data);
+        setLoading(false);
+
       } catch (error) {
         console.error('Error fetching dashboard data:', error);
         setError('Failed to fetch dashboard data.');
+        setLoading(false);
       }
     };
 
     fetchDashboardData();
   }, []);
 
-  if (error) {
-    return <div>Error: {error}</div>;
-  }
-
-  if (!dashboardData) {
-    return <div>Loading...</div>;
-  }
 
   const { first_name, company_name, profile_picture_url, time_zone, role, manager, current_timesheet } = dashboardData;
 
+  if (loading) return <div>Loading...</div>;
+  if (!dashboardData) return <div>Error: The API server is not available at the moment. Please try again later.</div>;
   return (
     <div>
       <h1>Welcome, {first_name}!</h1>
@@ -55,7 +57,6 @@ function EmployeeDashboard() {
                   <tr key={index}>
                     <td>{entry.started_at}</td>
                     <td>{entry.hours_worked}</td>
-                    {/* Add more table cells for additional data */}
                   </tr>
                 ))}
               </tbody>
