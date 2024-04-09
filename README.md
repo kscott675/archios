@@ -46,4 +46,4 @@ Archios is developed and maintained by [Archios](https://www.archios.cloud). Our
 
 ---
 
-Thank you for choosing Archios for your time tracking needs. We hope you find it valuable and efficient for managing your working hours.
+Thank you for choosing Archios for your time tracking needs. We hope you find it valuable and efficient for managing your timesheets. 
