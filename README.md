@@ -36,3 +36,14 @@ To start using Archios, follow these steps:
 
 Archios provides detailed timesheet reports that can be accessed through the web interface. Simply log in to your account to view and download your reports.
 
+## Support
+
+If you encounter any issues or have questions about Archios, please contact our support team at [support@archios.cloud](mailto:support@archios.cloud). We're here to help!
+
+## About Us
+
+Archios is developed and maintained by [Archios](https://www.archios.cloud). Our mission is to provide innovative solutions to simplify your work and enhance your productivity.
+
+---
+
+Thank you for choosing Archios for your time tracking needs. We hope you find it valuable and efficient for managing your timesheets. 
