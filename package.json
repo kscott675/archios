@@ -1,0 +1,9 @@
+{
+  "name": "archios",
+  "version": "1.0.0",
+  "description": "timesheet management through email",
+  "main": "app/controllers/application_controller.rb",
+  "repository": "https://github.com/kscott675/tsms",
+  "author": "Kiowa Scott <97994294+kscott675@users.noreply.github.com>",
+  "license": "MIT"
+}
