@@ -12,10 +12,7 @@
 #  updated_at :datetime         not null
 #
 class PayPeriod < ApplicationRecord
-  has_many :timesheet_entries
+  include PayPeriod::Payable
 
-  def self.current
-    today = Date.today
-    find_by('started_at <= ? AND ended_at >= ?', today, today)
-  end
+  has_many :timesheet_entries
 end
