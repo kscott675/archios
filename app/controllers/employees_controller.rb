@@ -4,7 +4,6 @@ class EmployeesController < ApplicationController
   before_action :authenticate_employee!
   before_action :set_employee, only: %i[show edit update destroy]
 
-  # GET /employees/1 or /employees/1.json
   def show
     @employee = current_employee
   end
@@ -14,16 +13,13 @@ class EmployeesController < ApplicationController
     render :dashboard, employee: current_employee
   end
 
-  # GET /employees/new
   def new
     @employee = Employee.new
   end
 
-  # GET /employees/1/edit
   def edit
   end
 
-  # POST /employees or /employees.json
   def create
     @employee = Employee.new(employee_params)
     respond_to do |format|
@@ -38,7 +34,6 @@ class EmployeesController < ApplicationController
     end
   end
 
-  # PATCH/PUT /employees/1 or /employees/1.json
   def update
     respond_to do |format|
       if @employee.update(employee_params)
@@ -51,7 +46,6 @@ class EmployeesController < ApplicationController
     end
   end
 
-  # DELETE /employees/1 or /employees/1.json
   def destroy
     @employee.destroy
 
@@ -63,7 +57,6 @@ class EmployeesController < ApplicationController
 
   private
 
-  # Use callbacks to share common setup or constraints between actions.
   def set_employee
     @employee = if current_employee.present?
         current_employee

@@ -53,20 +53,15 @@ julius = Employee.create!(
   email: "julius@example.com",
   password: "password",
 )
-
 puts "#{Employee.count} employees have been created."
 
 pay_period = PayPeriod.current
 
-if pay_period.nil?
-  started_at = PayPeriod.last.ended_at + 1.day
-  ended_at = started_at + 14.days
-
-  PayPeriod.create!(
-    started_at: started_at,
-    ended_at: ended_at,
-    name: Faker::Movies::HarryPotter.spell,
-  )
+unless pay_period
+  pay_period = PayPeriod.create_current_pay_period
+  puts "New pay period created"
+else 
+  puts "Pay period is up to date"
 end
 
 # making sample timesheet entries more realistic

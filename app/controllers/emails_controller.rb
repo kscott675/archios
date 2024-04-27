@@ -14,10 +14,8 @@ class EmailsController < ApplicationController
     )
 
     if request.persisted?
-      # Respond to the email sender or return a response
       render plain: "Email received and saved successfully"
     else
-      # Handle the case where the record could not be saved
       render plain: "Error saving email record", status: :unprocessable_entity
     end
   end
