@@ -113,6 +113,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_04_27_155742) do
     t.bigint "pay_period_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "pay_period_id"
     t.index ["employee_id"], name: "index_timesheet_entries_on_employee_id"
     t.index ["pay_period_id"], name: "index_timesheet_entries_on_pay_period_id"
   end

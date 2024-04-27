@@ -8,7 +8,7 @@
 #  comments              :text
 #  ended_at              :datetime
 #  entry_approval_status :string
-#  hours_worked          :decimal(, )
+#  hours_worked          :float            default(0.0)
 #  started_at            :datetime
 #  created_at            :datetime         not null
 #  updated_at            :datetime         not null
@@ -53,6 +53,7 @@ class TimesheetEntry < ApplicationRecord
     hours_worked = duration_hours.round(2) # Round to two decimal places
     update_columns(hours_worked:, entry_approval_status: 'pending')
   end
+
 
   private
 
