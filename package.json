@@ -7,7 +7,9 @@
   "author": "Kiowa Scott <97994294+kscott675@users.noreply.github.com>",
   "license": "MIT",
   "dependencies": {
-    "webpack": "^5.91.0"
+    "shakapacker": "^7.2.3",
+    "webpack": "^5.91.0",
+    "webpack-assets-manifest": "^5.2.1"
   },
   "devDependencies": {
     "webpack-cli": "^5.1.4"
