@@ -133,3 +133,5 @@ gem 'pg', '~> 1.5'
 gem 'bindex', '~> 0.8.1'
 
 gem "ultrahook", "~> 1.0"
+
+gem "webpack", "~> 0.4.2"
