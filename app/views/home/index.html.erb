@@ -27,9 +27,12 @@
 
   <div class="row text-center">
     <div class="col-lg-12">
-      <h1 class="p-3">Get started now:</h1>
-      <% if current_employee.present? %>
-        <%= link_to "My Dashboard", employee_path(current_employee), class: "btn btn-success btn-lg" %>
+      <% if current_employee %>
+        <h2 class="display-5 mb-4 mt-4 p-2">Welcome back, <%= current_employee.first_name %>! </h2>
+        <%= link_to employee_path(current_employee), class: "btn btn-success btn-lg" do %>
+        Go to my dashboard
+        <i class="pm-1"> <%= image_tag("chevron-right.svg") %> </i>
+        <% end %>
       <% else %>
         <h2 class="display-5 mb-4">Get started now:</h2>
       </div>
