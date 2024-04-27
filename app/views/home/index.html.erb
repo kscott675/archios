@@ -1,39 +1,40 @@
 <div class="container">
-  <div class="row text-center p-4 mt-5">
-    <div class="col-lg-12">
-      <h1 class="display-4">archios</h1>
-    </div>
-    <div class="col-lg-12">
-      <p class="lead">Streamline your timesheet management by clocking in over email.</p>
-    </div>
-  </div>
-
-  <div class="row justify-content-center p-4">
-    <div class="col-md-4 mb-4 text-center">
-      <h6 class="fw-bold">Takes less than 30 seconds.</h6>
-      <%= image_tag 'check-circle.svg' %>
-    </div>
-    <div class="col-md-4 mb-4 text-center">
-      <h6 class="fw-bold">Standardized approval flow.</h6>
-      <%= image_tag 'check-circle.svg' %>
-    </div>
-    <div class="col-md-4 mb-4 text-center">
-      <h6 class="fw-bold">Daily reminders to fill out your timesheet.</h6>
-      <%= image_tag 'check-circle.svg' %>
-    </div>
-  </div>
-
-  <hr>
 
   <div class="row text-center">
     <div class="col-lg-12">
       <% if current_employee %>
         <h2 class="display-5 mb-4 mt-4 p-2">Welcome back, <%= current_employee.first_name %>! </h2>
         <%= link_to employee_path(current_employee), class: "btn btn-success btn-lg" do %>
-        Go to my dashboard
-        <i class="pm-1"> <%= image_tag("chevron-right.svg") %> </i>
+          Go to my dashboard
+          <i class="pm-1"> <%= image_tag("chevron-right.svg") %> </i>
         <% end %>
       <% else %>
+        <div class="row text-center p-4 mt-5">
+          <div class="col-lg-12">
+            <h1 class="display-4">archios</h1>
+          </div>
+          <div class="col-lg-12">
+            <p class="lead">Streamline your timesheet management by clocking in over email.</p>
+          </div>
+        </div>
+
+        <div class="row justify-content-center p-4">
+          <div class="col-md-4 mb-4 text-center">
+            <h6 class="fw-bold">Takes less than 30 seconds.</h6>
+            <%= image_tag 'check-circle.svg' %>
+          </div>
+          <div class="col-md-4 mb-4 text-center">
+            <h6 class="fw-bold">Standardized approval flow.</h6>
+            <%= image_tag 'check-circle.svg' %>
+          </div>
+          <div class="col-md-4 mb-4 text-center">
+            <h6 class="fw-bold">Daily reminders to fill out your timesheet.</h6>
+            <%= image_tag 'check-circle.svg' %>
+          </div>
+        </div>
+
+        <hr>
+
         <h2 class="display-5 mb-4">Get started now:</h2>
       </div>
       <div class="col-lg-12">

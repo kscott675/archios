@@ -1,2 +1,2 @@
-RAILS_ENV=production bundle exec rake assets:precompile
-web: bundle exec rails server -p $PORT
+web: bundle exec puma -C config/puma.rb
+release: bin/rails db:migrate
