@@ -1,49 +1,37 @@
-# Archios Timesheet App
+# Archios: Don't lose track of time.
 
-Archios is a sophisticated timesheet application that simplifies time tracking for individuals and teams. With Archios, users can conveniently clock in and out using SMS, making it effortless to log working hours from anywhere, anytime.
+Archios is a sophisticated timesheet application that simplifies time tracking for individuals and teams. With Archios, users can conveniently clock in and out using email, making it effortless to log working hours.
 
 ## Features
 
-- **Email Clock-In**: Easily clock in and out using SMS commands.
-- **Efficient Time Tracking**: Streamline time tracking for individuals and teams.
+- **Email Clock-In**: Easily clock in and out using simple commands, also known as our **t-mail** function.
+- **Managerial Dashboard**:
+    - Everything included with the employee dashboard plus
+        - **Informational armor:** Be ready for that status update with a snapshot of your team's status at once with no operational overhead:
+            see their availability status, hours worked, and time zone.
+- **Employee Dashboard**:
+    - **Clock in and out with one-click:** Streamline time tracking with our one-click clock-in/clock-out feature.
+    - **Silent reporting:** Showcase your availability with a dynamic status indicator that changes color based on availability status ("Available," "Deep Focus," and "Away from Desk").
 - **User-Friendly Interface**: Intuitive and user-friendly interface for seamless navigation.
-- **Customizable Reporting**: Generate customizable reports to track working hours and productivity.
-- **Multi-Platform Accessibility**: Accessible from any device with SMS capability, including smartphones and basic mobile phones.
+- **Multi-Platform Accessibility**: Accessible from any device with email capability.
 
 ## Getting Started
 
 To start using Archios, follow these steps:
 
 1. **Sign Up**: Create an account on the Archios platform.
-2. **Configure SMS Clock-In**: Set up your SMS clock-in preferences in your account settings.
-3. **Clock In**: Send an SMS with the designated clock-in keyword to start tracking your working hours.
-4. **Clock Out**: When you're done working, send another SMS with the clock-out keyword to stop the timer.
-5. **View Reports**: Access your timesheet reports and analyze your productivity over time.
+2. **Clock In**: Test out our one-click clock-in feature. 
+3. **Configure Email Clock-In (optional, but recommended!)**: Opt-in to timesheet updates via email (A.K.A. "t-mail") in your account settings. Once configured, you can populate your timesheet with one of our two-word commands (see below).
+4. **Clock Out**: When you're done working, clock out using our one-click function. Or, send an email to: [our t-mail service](mailto:5b0c75c112b606889bc59936d3427461@inbound.postmarkapp.com)
+ with the words "clock out," to test it out!
 
 ## Requirements
 
-- A mobile phone with SMS capability
-- Internet access for account setup and reporting (optional)
+- Internet access for account setup and reporting
 
 ## Usage
 
-### SMS Commands
+### Email Commands
 
-- **Clock In**: Send "IN" to the designated Archios number to start your workday.
-- **Clock Out**: Send "OUT" to the same number to end your workday and log your hours.
-
-### Reporting
-
-Archios provides detailed timesheet reports that can be accessed through the web interface. Simply log in to your account to view and download your reports.
-
-bundle install
-
-bundle cache 
-
-yarn install 
-
-rails assets:precompile
-
-rails s --p 8080
-
-ngrok http http://localhost:8080
+- **Clock In**: Send "Clock in" to the designated Archios email to start your workday.
+- **Clock Out**: Send "Clock out" to the same number to end your workday and log your hours.
