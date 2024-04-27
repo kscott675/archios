@@ -7,6 +7,7 @@
 #
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
+ActiveRecord::Base.transaction do
 
 company = Company.create!(
   name: Faker::TvShows::Simpsons.location,
@@ -14,6 +15,7 @@ company = Company.create!(
 )
 
 puts "#{Company.count} companies have been created."
+employees = []
 
 yoli = Employee.create!(
   first_name: "Yoli",
@@ -28,6 +30,8 @@ yoli = Employee.create!(
   password: "password",
 )
 
+employees << yoli
+
 bob = Employee.create!(
   first_name: "Bob",
   last_name: Faker::Name.last_name,
@@ -41,6 +45,8 @@ bob = Employee.create!(
   password: "password",
 )
 
+employees << bob
+
 julius = Employee.create!(
   first_name: "Julius",
   last_name: Faker::Name.last_name,
@@ -53,12 +59,15 @@ julius = Employee.create!(
   email: "julius@example.com",
   password: "password",
 )
+
+employees << julius
+
 puts "#{Employee.count} employees have been created."
 
-pay_period = PayPeriod.current
+current_pay_period = PayPeriod.current
 
-unless pay_period
-  pay_period = PayPeriod.create_current_pay_period
+unless current_pay_period
+  current_pay_period = PayPeriod.create_current_pay_period
   puts "New pay period created"
 else 
   puts "Pay period is up to date"
@@ -69,13 +78,13 @@ WORK_HOURS_RANGE = (4..10)
 
 Employee.all.each do |employee|
   10.times do
-    started_at = Faker::Time.between(from: PayPeriod.current.started_at, to: PayPeriod.current.ended_at)
+    started_at = Faker::Time.between(from: current_pay_period.started_at, to: current_pay_period.ended_at)
 
     # Determine the duration of the shift
     shift_duration = rand(WORK_HOURS_RANGE).hours
 
     # Make sure the shift doesn't exceed the pay period's end
-    ended_at = [started_at + shift_duration, PayPeriod.current.ended_at].compact.min
+    ended_at = [started_at + shift_duration, current_pay_period.ended_at].compact.min
 
     previous_entry = employee.timesheet_entries.last
 
@@ -91,17 +100,19 @@ Employee.all.each do |employee|
         started_at: started_at,
         ended_at:,
         entry_approval_status: (ended_at.nil? ? "pending" : %w[approved rejected].sample),
-        pay_period_id: PayPeriod.current.id,
+        pay_period_id: current_pay_period.id,
       )
     end
   end
 end
+
 puts "#{TimesheetEntry.count} timesheet entries have been created."
 
-TmailSubscription.create!(
-  employee_id: yoli.id,
-)
 
 TmailSubscription.create!(
   employee_id: bob.id,
 )
+
+
+puts "#{employees.count} are in the employee array"
+end

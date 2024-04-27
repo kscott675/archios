@@ -9,7 +9,8 @@ module PayPeriod::Payable
 
     def create_current_pay_period
       unless current
-        started_at = PayPeriod.last&.ended_at.to_date + 1.day
+        last_ended_at = PayPeriod.last&.ended_at || Date.yesterday
+        started_at = last_ended_at + 1.day
         ended_at = started_at + 14.days
 
         PayPeriod.create!(
