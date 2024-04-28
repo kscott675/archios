@@ -77,46 +77,48 @@ class TimesheetEntriesController < ApplicationController
       else
         format.html { render :edit }
       end
-    if @timesheet_entry.update(timesheet_entry_params)
-      respond_to do |format|
-        format.html { redirect_to @timesheet_entry, notice: "Timesheet entry was successfully updated." }
-        format.js { } # This will render update.js.erb
+      if @timesheet_entry.update(timesheet_entry_params)
+        respond_to do |format|
+          format.html { redirect_to @timesheet_entry, notice: "Timesheet entry was successfully updated." }
+          format.js { } # This will render update.js.erb
+        end
+      else
+        render :edit
       end
-    else
-      render :edit
+      @employee.calculate_hours_worked
     end
-    @employee.calculate_hours_worked
-  end
 
-  # DELETE /timesheet_entries/1 or /timesheet_entries/1.json
-  def destroy
-    @timesheet_entry.destroy
+    # DELETE /timesheet_entries/1 or /timesheet_entries/1.json
+    def destroy
+      @timesheet_entry.destroy
 
-    respond_to do |format|
-      format.html { redirect_to timesheet_entries_url, notice: "Timesheet entry was successfully destroyed." }
-      format.json { head :no_content }
+      respond_to do |format|
+        format.html { redirect_to timesheet_entries_url, notice: "Timesheet entry was successfully destroyed." }
+        format.json { head :no_content }
+      end
     end
-  end
 
-  private
+    private
 
-  # Use callbacks to share common setup or constraints between actions.
-  def set_timesheet_entry
-    @timesheet_entry = TimesheetEntry.find(params[:id])
-  end
+    # Use callbacks to share common setup or constraints between actions.
+    def set_timesheet_entry
+      @timesheet_entry = TimesheetEntry.find(params[:id])
+    end
 
-  # Use callbacks to share common setup or constraints between actions.
-  def set_timesheet_entry
-    @timesheet_entry = TimesheetEntry.find(params[:id])
-  end
+    # Use callbacks to share common setup or constraints between actions.
+    def set_timesheet_entry
+      @timesheet_entry = TimesheetEntry.find(params[:id])
+    end
 
-  # Only allow a list of trusted parameters through.
-  def timesheet_entry_params
-    params.require(:timesheet_entry).permit(:employee_id, :started_at, :ended_at, :hours_worked, :comments,
-                                            :entry_approval_status, :pay_period_id)
-  end
-  # Only allow a list of trusted parameters through.
-  def timesheet_entry_params
-    params.require(:timesheet_entry).permit(:employee_id, :started_at, :ended_at, :hours_worked, :comments, :entry_approval_status)
+    # Only allow a list of trusted parameters through.
+    def timesheet_entry_params
+      params.require(:timesheet_entry).permit(:employee_id, :started_at, :ended_at, :hours_worked, :comments,
+                                              :entry_approval_status, :pay_period_id)
+    end
+
+    # Only allow a list of trusted parameters through.
+    def timesheet_entry_params
+      params.require(:timesheet_entry).permit(:employee_id, :started_at, :ended_at, :hours_worked, :comments, :entry_approval_status)
+    end
   end
 end
