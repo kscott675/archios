@@ -137,3 +137,5 @@ gem "ultrahook", "~> 1.0"
 gem "webpack", "~> 0.4.2"
 
 gem "rake", "~> 13.2"
+
+gem "psql", "~> 0.0.1"
